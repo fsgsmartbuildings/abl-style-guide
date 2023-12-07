@@ -16,22 +16,32 @@
 
 ## Error Handling
 <a name="no--error"></a><a name="2.1"></a>
-  - [2.1](#no--error) **NO-ERROR**: Use NO-ERROR only when you expect an error to occur, and if you use it, handle error appropriately
+  - [2.1](#no--error) **NO-ERROR**: Use NO-ERROR only for find statements that may not succeed, generally in combination with `IF AVAILABLE()`
 
     > Why? NO-ERROR suppresses errors, which can cause database inconsistency issues, memory leaks, infinite loops and more...
 
     ```openedge
     /* bad (error is suppressed, cMemberName is never assigned */
-    ASSIGN iMemberNumber = INTEGER("ABC")
-           cMemberName   = 'ABC' NO-ERROR.
+    ASSIGN
+        iMemberNumber = INTEGER("ABC")
+        cMemberName   = 'ABC' NO-ERROR.
         
     /* good (ver 1) - using structured error handling */
-    ASSIGN iMemberNumber = INTEGER("ABC")
-           cMemberName   = 'ABC'.
+    ASSIGN
+        iMemberNumber = INTEGER("ABC")
+        cMemberName   = 'ABC'.
     /* ... some code... */
     CATCH eExc AS Progress.Lang.ProError:
-      MESSAGE "Error:" + eExc:GetMessage(1).
+        MESSAGE "Error:" + eExc:GetMessage(1).
     END.
+
+    /* ok (ver 2) - FIND */
+    FIND Customer
+    WHERE Custno EQ 100300 NO-LOCK NO-ERROR.
+
+    IF AVAILABLE(Customer) THEN
+        ASSIGN Customer.Address = "1600 Pennsylvania Ave".
+    
     ```
 
 <a name="no--error"></a><a name="2.2"></a>
