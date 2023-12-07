@@ -32,13 +32,6 @@
     CATCH eExc AS Progress.Lang.ProError:
       MESSAGE "Error:" + eExc:GetMessage(1).
     END.
-        
-    /* good (ver 2) - classic error handling (split safe assignment from unsafe) */
-    ASSIGN cMemberName   = 'ABC'.
-    ASSIGN iMemberNumber = INTEGER("ABC") NO-ERROR.
-    IF ERROR-STATUS:ERROR THEN DO:
-        /* handle error here */
-    END.
     ```
 
 <a name="no--error"></a><a name="2.2"></a>
