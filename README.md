@@ -297,7 +297,7 @@
 <a name="no--wait"></a><a name="3.3"></a>
   - [3.3](#no--wait) **No-wait**: When use NO-WAIT with NO-ERROR, always check whether record is LOCKED or not
 
-    > Why? When you use NO-WAIT with NO-ERROR and record is locked, it also is not available. Checking only for AVAILABLE, will most likely cause undesirable outcome.
+    > Why? When you use NO-WAIT with NO-ERROR and record is locked, it also is not available. Checking only for AVAILABLE, will most likely cause an undesirable outcome.
 
     ```openedge
     /* bad */
@@ -371,9 +371,9 @@
 
     >Why? AVM automatically selects the most appropriate index
 
-    >Why not? USE-INDEX can be used to force display order (applicable to temp-tables)
+    >Why not? USE-INDEX can be used to force display order for temp-tables
 
-    >Why not? In case you need to process records in batches and index selection can't be consistently enforced by WHERE clause (REPOSITION TO ROW-ID -> NEXT/PREV)
+    >Why not? If you need to process records in batches and index selection can't be consistently enforced by WHERE clause (REPOSITION TO ROW-ID -> NEXT/PREV)
 
     ```openedge
     /* bad */
@@ -462,13 +462,13 @@
     ```
 
 <a name="no--commented--code"></a><a name="4.4"></a>
-  - [4.4](#no--commented--code) **No commented code**: Don't leave unused code commented - delete.
+  - [4.4](#no--commented--code) **No commented code**: Don't leave unused code commented - delete it.
 
-    > Why? It makes code less readable and causes unused code to be picked up when developer tries to search code snip in codebase
+    > Why? It makes code less readable and causes unused code to be picked up when developer tries to search for a code snippet in codebase
 
-    > Why? Developers must use version control system to keep track of changes
+    > Why? Developers must use a version control system to keep track of changes
 
-    > Note: If you commented out procedure / function / method calls, find whether commented procedure / function / method is used in other places, if not - delete it
+    > Note: If you commented out procedure / function / method calls, check whether the commented procedure / function / method is used in other places, if not - delete it
 
     ```openedge
     /* bad */
@@ -485,7 +485,7 @@
 
 ## Performance
 <a name="use--for--first"></a><a name="5.1"></a>
-  - [5.1](#use--for--first) **FOR FIRST/LAST**: Prefer to use FOR FIRST or FOR LAST instead of FIND FIRST/LAST
+  - [5.1](#use--for--first) **FOR FIRST/LAST**: Use FOR FIRST or FOR LAST instead of FIND FIRST/LAST
 
     > Why? FIND FIRST/LAST doesn't use multiple indexes (also there are issues with Oracle dataservers)
 
@@ -536,7 +536,7 @@
     ```
 
 <a name="by--reference"></a><a name="5.3"></a>
-  - [5.3](#by--reference) **BY-REFERENCE**: Always use BY-REFERENCE or BIND when passing temp-table or dataset to procedures/methods
+  - [5.3](#by--reference) **BY-REFERENCE**: Always use BY-REFERENCE or BIND when passing a temp-table or dataset to procedures/methods
 
     > Why? By default AVM clones temp-table / dataset when it's passed as parameter (BY-VALUE)
 
@@ -584,7 +584,7 @@
 <a name="variable--case"></a><a name="7.1"></a>
   - [7.1](#variable-case) **Variable Case**: Use appropriate case when naming variable
 
-    * When define variable use camelCase
+    * When defining a variable use camelCase
 
     ```openedge
     /* bad */
@@ -595,7 +595,7 @@
     DEFINE VARIABLE cMemberName AS CHARACTER NO-UNDO.
     ```
 
-    * When define constants use UPPER_CASE
+    * When defining constants use UPPER_CASE
 
     ```openedge
     /* bad */
@@ -613,7 +613,7 @@
         GET.
     ```
 
-    * When define property use camelCase, unless you do it for GUI for .NET, then use PascalCase
+    * When defining a property use camelCase, unless you are doing it for GUI for .NET, then use PascalCase
 
     ```openedge
     /* bad */
@@ -636,7 +636,7 @@
     ```
 
 <a name="buffer--name"></a><a name="7.2"></a>
-  - [7.2](#buffer--name) **Buffer Name**: When define buffer, prefix with b
+  - [7.2](#buffer--name) **Buffer Name**: When defining a buffer, prefix with b
 
 	```openedge
 	/* bad */
@@ -655,7 +655,7 @@
 	```
 
 <a name="variable--type"></a><a name="7.3"></a>
-  - [7.3](#variable--type) **Variable Type**: Prefix variable name with it's type
+  - [7.3](#variable--type) **Variable Type**: Prefix variable name with its type
 
     ```openedge
 	DEFINE VARIABLE cMemberName   AS CHARACTER    NO-UNDO.
@@ -672,7 +672,7 @@
 	```
 
 <a name="prefix-global-variables"></a><a name="7.4"></a>
-  - [7.4](#variable--type) **Global Variables**: Prefix prefix global variables (variables defined in main block or in class body) with 'g'
+  - [7.4](#variable--type) **Global Variables**: Prefix global variables (variables defined in main block or in class body) with 'g'
 
     ```openedge
     DEFINE VARIABLE gcMemberName   AS CHARACTER    NO-UNDO.
@@ -694,7 +694,7 @@
 	```
 
 <a name="input--prefix"></a><a name="7.6"></a>
-  - [7.6](#input--prefix) **Prefix temp-table/prodataset**: Put prefix on temp-tables (tt, bi), datasets (pds) and datasources (ds)
+  - [7.6](#input--prefix) **Prefix temp-table/prodataset**: Put a prefix on temp-tables (tt, bi), datasets (pds) and datasources (ds)
 
     ```openedge
     /* bad */
@@ -868,7 +868,7 @@
     ```
 
 <a name="blk--indentation"></a><a name="9.4"></a>
-  - [9.4](#blk--indentation) **Block Indentation**: Use correct block indentation, put DO statement on the same line. __Make sure you configured Tab policy in Eclipse to use Spaces only (4 spaces per tab)__
+  - [9.4](#blk--indentation) **Block Indentation**: Use correct block indentation, put DO statements on the same line. 
 
     ```openedge
     /* bad */
@@ -919,7 +919,7 @@
     ```
 
 <a name="method--params"></a><a name="9.6"></a>
-  - [9.6](#method--params) **Parameters**: Put first method/function/procedure parameter on the same line. If method has more than 3 parameters, put every parameter on new line (aligned to first parameter)
+  - [9.6](#method--params) **Parameters**: Put first method/function/procedure parameter on the same line. If a method has more than 3 parameters, put every parameter on new line (aligned to first parameter)
 
     ```openedge
     /* bad */
@@ -951,7 +951,7 @@
     ```
 
 <a name="if--parens"></a><a name="9.7"></a>
-  - [9.7](#if--parens) **If Parentheses**: Always use parentheses when have AND and OR conditions or use IF in ASSIGN statement
+  - [9.7](#if--parens) **If Parentheses**: Always use parentheses with AND and OR conditions or when using IF in ASSIGN statement
 
     > Why? Even though precedence order is known, some people forget it or it gets mixed.
 
@@ -969,7 +969,7 @@
     ```
 
 <a name="end--with-type"></a><a name="9.8"></a>
-  - [9.8](#end--with-type) **End with type**: Always specify what is end used for (PROCEDURE, CONSTRUCTOR, DESTRUCTOR, METHOD or FUNCTION)
+  - [9.8](#end--with-type) **End with type**: Always specify what end is used for (PROCEDURE, CONSTRUCTOR, DESTRUCTOR, METHOD or FUNCTION)
 
     ```openedge
     /* bad */
@@ -1006,7 +1006,7 @@
     ```
 
 <a name="methods--out--return"></a><a name="9.9"></a>
-  - [9.9](#methods--out--return) **Consistent method/function return**: Either return value or use output parameters (don't mix) when working with methods / functions
+  - [9.9](#methods--out--return) **Consistent method/function return**: Either return value OR use output parameters when working with methods / functions
 
     ```openedge
     /* bad */
@@ -1143,7 +1143,7 @@
     ```
 
 <a name="assign--statement"></a><a name="10.2"></a>
-  - [10.2](#assign--statement) **Assign Statement**: Always use ASSIGN statement (even on single assignments)
+  - [10.2](#assign--statement) **Assign Statement**: Always use the ASSIGN statement (even on single assignments)
 
     > Why? This method allows you to change several values with minimum I/O processing. Otherwise, the AVM re-indexes records at the end of each statement that changes the value of an index component.
 
@@ -1171,7 +1171,7 @@
       
     
 <a name="in--procedure"></a><a name="10.4"></a>
-  - [10.4](#in--procedure) **IN THIS-PROCEDURE**: When call internal procedures use RUN ... IN THIS-PROCEDURE.
+  - [10.4](#in--procedure) **IN THIS-PROCEDURE**: When calling internal procedures use RUN ... IN THIS-PROCEDURE.
 
     > Why? To prevent STOP condition when the specified procedure is not found.
     
