@@ -822,7 +822,7 @@
     ```
 
 <a name="comp--operators"></a><a name="9.2"></a>
-  - [9.3](#comp--operators) **Use EQ**: When doing comparisons, use EQ rather than =
+  - [9.2](#comp--operators) **Use EQ**: When doing comparisons, use EQ rather than =
 
     > Why? Helps distinguish between assignments and validation or query logic, particularly when searching codebase.
 
