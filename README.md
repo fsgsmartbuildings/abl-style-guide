@@ -822,7 +822,20 @@
     ```
 
 <a name="comp--operators"></a><a name="9.2"></a>
-  - [9.2](#comp--operators) **No Comparison operators**: Avoid using comparison operators: EQ(=), LT(<), LE(<=), GT(>), GE(>=), NE(<>)
+  - [9.3](#comp--operators) **Use EQ**: When doing comparisons, use EQ rather than =
+
+    > Why? Helps distinguish between assignments and validation or query logic, particularly when searching codebase.
+
+    ```openedge
+    /* bad */
+    IF memberDOB = 01/01/1980 THEN
+
+    /* good */
+    IF memberDOB EQ 01/01/1980 THEN
+    ```
+
+<a name="comp--operators"></a><a name="9.2"></a>
+  - [9.3](#comp--operators) **No Comparison operators**: Avoid using comparison operators except for `CONTAINS`, `BEGINS`, and `MATCHES`, for which there are no symbols, and `EQ` (see above)
 
     ```openedge
     /* bad */
@@ -833,7 +846,7 @@
     ```
 
 <a name="same--line-dot"></a><a name="9.3"></a>
-  - [9.3](#same--line-dot) **Dot/Colon Same Line** Put dot and colon on the same line:
+  - [9.4](#same--line-dot) **Dot/Colon Same Line** Put dot and colon on the same line:
 
     ```openedge
     /* bad */
@@ -868,7 +881,7 @@
     ```
 
 <a name="blk--indentation"></a><a name="9.4"></a>
-  - [9.4](#blk--indentation) **Block Indentation**: Use correct block indentation, put DO statements on the same line. 
+  - [9.5](#blk--indentation) **Block Indentation**: Use correct block indentation, put DO statements on the same line. 
 
     ```openedge
     /* bad */
@@ -906,7 +919,7 @@
     ```
 
 <a name="where--position"></a><a name="9.5"></a>
-  - [9.5](#where--position) **WHERE NEW LINE**: Always put WHERE and AND/OR on next line.
+  - [9.6](#where--position) **WHERE NEW LINE**: Always put WHERE and AND/OR on next line.
 
     ```openedge
     /* bad */
@@ -919,7 +932,7 @@
     ```
 
 <a name="method--params"></a><a name="9.6"></a>
-  - [9.6](#method--params) **Parameters**: Put first method/function/procedure parameter on the same line. If a method has more than 3 parameters, put every parameter on new line (aligned to first parameter)
+  - [9.7](#method--params) **Parameters**: Put first method/function/procedure parameter on the same line. If a method has more than 3 parameters, put every parameter on new line (aligned to first parameter)
 
     ```openedge
     /* bad */
@@ -951,7 +964,7 @@
     ```
 
 <a name="if--parens"></a><a name="9.7"></a>
-  - [9.7](#if--parens) **If Parentheses**: Always use parentheses with AND and OR conditions or when using IF in ASSIGN statement
+  - [9.8](#if--parens) **If Parentheses**: Always use parentheses with AND and OR conditions or when using IF in ASSIGN statement
 
     > Why? Even though precedence order is known, some people forget it or it gets mixed.
 
@@ -969,7 +982,7 @@
     ```
 
 <a name="end--with-type"></a><a name="9.8"></a>
-  - [9.8](#end--with-type) **End with type**: Always specify what end is used for (PROCEDURE, CONSTRUCTOR, DESTRUCTOR, METHOD or FUNCTION)
+  - [9.9](#end--with-type) **End with type**: Always specify what end is used for (PROCEDURE, CONSTRUCTOR, DESTRUCTOR, METHOD or FUNCTION)
 
     ```openedge
     /* bad */
@@ -1006,7 +1019,7 @@
     ```
 
 <a name="methods--out--return"></a><a name="9.9"></a>
-  - [9.9](#methods--out--return) **Consistent method/function return**: Either return value OR use output parameters when working with methods / functions
+  - [9.10](#methods--out--return) **Consistent method/function return**: Either return value OR use output parameters when working with methods / functions
 
     ```openedge
     /* bad */
@@ -1022,7 +1035,7 @@
     ```
 
 <a name="no--abbreviate"></a><a name="9.10"></a>
-  - [9.10](#no--abbreviate) **Don't abbreviate**: Don't abbreviate keywords, tables, fields
+  - [9.11](#no--abbreviate) **Don't abbreviate**: Don't abbreviate keywords, tables, fields
   
       > Why? To make code more readable
   
@@ -1046,7 +1059,7 @@
       ```
 
 <a name="no--keywords--names"></a><a name="9.11"></a>
-  - [9.11](#no--keywords--names) **No keywords**: Don't use keywords for properties, fields, variables, class names
+  - [9.12](#no--keywords--names) **No keywords**: Don't use keywords for properties, fields, variables, class names
   
     ```openedge
     /* bad property name */
@@ -1075,7 +1088,7 @@
     ```
 
 <a name="backslash"></a><a name="9.12"></a>
-  - [9.12](#backslash) **Backslash**: Prefer to use forward slash to backslash. If forward slash can't be used, escape backslash with a tilde. 
+  - [9.13](#backslash) **Backslash**: Prefer to use forward slash to backslash. If forward slash can't be used, escape backslash with a tilde. 
   
     > Why? Can cause unexpected behavior as backslash is an escape-character on Linux
     
@@ -1093,7 +1106,7 @@
     ```
 
 <a name="no--like"></a><a name="9.13"></a>
-  - [9.13](#no--like) **No LIKE** Never use LIKE on database tables 
+  - [9.14](#no--like) **No LIKE** Never use LIKE on database tables 
 
     > Why? Can cause unexpected results when schema changes (especially important when table is used by REST/SOAP adapter)
 
